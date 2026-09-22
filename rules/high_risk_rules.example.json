@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "status": "sanitized-design-example",
+  "rules": [
+    {"id": "R-001", "category": "main-output", "name": "Protected main outputs preserve approved destinations", "severity": "critical"},
+    {"id": "R-002", "category": "subwoofer-output", "name": "Subwoofer feeds preserve approved destinations", "severity": "critical"},
+    {"id": "R-003", "category": "monitor-output", "name": "Monitor buses preserve approved physical outputs", "severity": "major"},
+    {"id": "R-004", "category": "front-fill-output", "name": "Front-fill feed preserves its approved destination", "severity": "major"},
+    {"id": "R-005", "category": "critical-input", "name": "Critical input sources preserve approved socket assignments", "severity": "critical"},
+    {"id": "R-006", "category": "broadcast-card", "name": "Broadcast buses preserve approved card outputs", "severity": "major"},
+    {"id": "R-007", "category": "bus-matrix-membership", "name": "Protected buses preserve required matrix membership", "severity": "major"},
+    {"id": "R-008", "category": "destination-conflict", "name": "Protected destinations have no conflicting duplicate assignment", "severity": "critical"}
+  ]
+}
