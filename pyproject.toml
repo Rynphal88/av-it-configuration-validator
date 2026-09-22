@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "av-it-configuration-validator"
+version = "0.1.0"
+description = "Read-only configuration-validation scaffold for a bounded ASEL X32 capstone case study"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
