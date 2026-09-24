@@ -1,0 +1,4 @@
+# Synthetic candidate containing controlled routing drift
+/route/main OFF
+/route/broadcast OFF
+/input/critical LOCAL

@@ -8,7 +8,7 @@ The project is a bounded, read-only proof of concept for validating selected Beh
 
 ## Current status
 
-Unit 3 detailed-design and implementation scaffold. The repository contains the architecture, requirements, traceability matrix, sanitized rule schema, parser and validation-engine scaffolds, foundational tests, and assignment documentation. It is not production-ready and does not control or modify a live console.
+Unit 4 initial prototype. The repository contains the architecture, requirements, traceability matrix, sanitized rule schema, read-only input checks, deterministic parser, validation engine, explainable report output, automated tests, and assignment documentation. It is not production-ready and does not control or modify a live console.
 
 ## Safety and scope boundaries
 
@@ -46,6 +46,30 @@ Changes are committed with action-oriented messages. Feature work is reviewed be
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+## Unit 4 demonstration
+
+The demonstration uses only synthetic files. From the repository root, run:
+
+```bash
+PYTHONPATH=src python -m av_validator \
+  --candidate sample-configs/sanitized/candidate-drift.scn \
+  --baseline sample-configs/sanitized/approved-baseline.scn \
+  --rules rules/demo_rules.json
+```
+
+The report identifies two controlled routing deviations and shows the rule,
+protected path, expected value, observed value, severity, and rationale. Replace
+`candidate-drift.scn` with `candidate-compliant.scn` to demonstrate a compliant
+result. The command reads candidate and baseline files without modifying them.
+
+On Windows PowerShell, use the following one-line commands after installing the
+project with `python -m pip install -e .`:
+
+```powershell
+python -m av_validator --candidate sample-configs/sanitized/candidate-drift.scn --baseline sample-configs/sanitized/approved-baseline.scn --rules rules/demo_rules.json
+python -m av_validator --candidate sample-configs/sanitized/candidate-compliant.scn --baseline sample-configs/sanitized/approved-baseline.scn --rules rules/demo_rules.json
 ```
 
 ## License and data
