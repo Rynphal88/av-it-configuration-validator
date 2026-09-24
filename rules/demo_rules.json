@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "status": "sanitized-unit-4-demo",
+  "rules": [
+    {
+      "id": "R-001",
+      "name": "Main output path enabled",
+      "path": "/route/main",
+      "severity": "critical",
+      "rationale": "The approved main loudspeaker service requires this protected route."
+    },
+    {
+      "id": "R-006",
+      "name": "Broadcast path enabled",
+      "path": "/route/broadcast",
+      "severity": "major",
+      "rationale": "The approved streaming service requires this broadcast route."
+    },
+    {
+      "id": "R-005",
+      "name": "Critical input source preserved",
+      "path": "/input/critical",
+      "severity": "critical",
+      "rationale": "The approved service requires the protected input source."
+    }
+  ]
+}

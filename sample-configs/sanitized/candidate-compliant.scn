@@ -1,0 +1,4 @@
+# Synthetic candidate matching the approved baseline
+/route/main ON
+/route/broadcast ON
+/input/critical LOCAL

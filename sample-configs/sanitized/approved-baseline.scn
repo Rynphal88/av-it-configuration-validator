@@ -1,0 +1,4 @@
+# Synthetic Unit 4 demonstration baseline
+/route/main ON
+/route/broadcast ON
+/input/critical LOCAL
