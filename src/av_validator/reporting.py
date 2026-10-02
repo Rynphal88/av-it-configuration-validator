@@ -21,6 +21,13 @@ def build_report(
     """Build a stable, machine-readable report without modifying inputs."""
 
     severity_counts = Counter(finding.severity.value for finding in findings)
+    has_critical = any(finding.severity.value == "critical" for finding in findings)
+    if has_critical:
+        recommendation = "Hold deployment pending authorized human review."
+    elif findings:
+        recommendation = "Review findings before deployment."
+    else:
+        recommendation = "No protected-path drift detected; retain normal pre-deployment review."
     return {
         "status": "findings" if findings else "compliant",
         "candidate": {
@@ -35,6 +42,11 @@ def build_report(
         },
         "rules": {"evaluated": rule_count, "sha256": rules_sha256},
         "summary": {"finding_count": len(findings), "by_severity": dict(sorted(severity_counts.items()))},
+        "review": {
+            "required": bool(findings),
+            "automated_action": "none",
+            "recommendation": recommendation,
+        },
         "findings": [
             {
                 "rule_id": finding.rule_id,
@@ -62,6 +74,8 @@ def format_text_report(report: dict[str, Any]) -> str:
         f"Baseline: {report['baseline']['name']}",
         f"Rules evaluated: {report['rules']['evaluated']}",
         f"Findings: {report['summary']['finding_count']}",
+        f"Automated action: {report['review']['automated_action'].upper()}",
+        f"Human review: {report['review']['recommendation']}",
     ]
     if not report["findings"]:
         lines.append("No protected-path drift was detected.")
