@@ -11,6 +11,14 @@ class Severity(StrEnum):
     INFORMATIONAL = "informational"
 
 
+SEVERITY_PRIORITY: dict[Severity, int] = {
+    Severity.CRITICAL: 0,
+    Severity.MAJOR: 1,
+    Severity.MINOR: 2,
+    Severity.INFORMATIONAL: 3,
+}
+
+
 @dataclass(frozen=True)
 class Rule:
     rule_id: str

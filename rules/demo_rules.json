@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.2",
+  "status": "sanitized-unit-5-core",
+  "rules": [
+    {
+      "id": "R-001",
+      "name": "Main output path enabled",
+      "path": "/route/main",
+      "severity": "critical",
+      "rationale": "The approved main loudspeaker service requires this protected route."
+    },
+    {
+      "id": "R-002",
+      "name": "Subwoofer output path preserved",
+      "path": "/route/subwoofer",
+      "severity": "critical",
+      "rationale": "The approved low-frequency service requires this protected destination."
+    },
+    {
+      "id": "R-003",
+      "name": "Monitor output path preserved",
+      "path": "/route/monitor",
+      "severity": "major",
+      "rationale": "The approved monitor service requires this protected bus assignment."
+    },
+    {
+      "id": "R-004",
+      "name": "Front-fill output path preserved",
+      "path": "/route/frontfill",
+      "severity": "major",
+      "rationale": "The approved front-fill service requires this protected feed."
+    },
+    {
+      "id": "R-006",
+      "name": "Broadcast path enabled",
+      "path": "/route/broadcast",
+      "severity": "major",
+      "rationale": "The approved streaming service requires this broadcast route."
+    },
+    {
+      "id": "R-005",
+      "name": "Critical input source preserved",
+      "path": "/input/critical",
+      "severity": "critical",
+      "rationale": "The approved service requires the protected input source."
+    },
+    {
+      "id": "R-007",
+      "name": "Matrix membership preserved",
+      "path": "/matrix/main_membership",
+      "severity": "major",
+      "rationale": "The approved loudspeaker path requires this matrix membership."
+    },
+    {
+      "id": "R-008",
+      "name": "Protected destination remains conflict free",
+      "path": "/route/destination_conflict",
+      "severity": "critical",
+      "rationale": "A duplicate protected destination can misroute or interrupt a required service."
+    }
+  ]
+}

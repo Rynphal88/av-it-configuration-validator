@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
 
-from .models import Finding, Rule
+from .models import Finding, Rule, SEVERITY_PRIORITY
 
 
 def evaluate_rules(
@@ -27,4 +27,11 @@ def evaluate_rules(
                     rationale=rule.rationale,
                 )
             )
-    return findings
+    return sorted(
+        findings,
+        key=lambda finding: (
+            SEVERITY_PRIORITY[finding.severity],
+            finding.rule_id,
+            finding.path,
+        ),
+    )

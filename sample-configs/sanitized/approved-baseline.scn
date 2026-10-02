@@ -1,0 +1,9 @@
+# Synthetic Unit 5 approved baseline
+/route/main ON
+/route/subwoofer MONO
+/route/monitor BUS1
+/route/frontfill BUS6
+/route/broadcast ON
+/input/critical LOCAL
+/matrix/main_membership ON
+/route/destination_conflict NONE

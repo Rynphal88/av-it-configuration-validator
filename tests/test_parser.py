@@ -24,6 +24,10 @@ class ParserTests(unittest.TestCase):
         with self.assertRaisesRegex(SceneParseError, "size limit"):
             parse_scene_text("/a 1", max_chars=3)
 
+    def test_parser_rejects_unclosed_quote(self):
+        with self.assertRaisesRegex(SceneParseError, "malformed"):
+            parse_scene_text('/ch/01/config "unclosed\n')
+
 
 if __name__ == "__main__":
     unittest.main()
