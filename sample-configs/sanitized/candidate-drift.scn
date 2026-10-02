@@ -1,4 +1,9 @@
 # Synthetic candidate containing controlled routing drift
 /route/main OFF
+/route/subwoofer MONO
+/route/monitor BUS1
+/route/frontfill BUS6
 /route/broadcast OFF
 /input/critical LOCAL
+/matrix/main_membership OFF
+/route/destination_conflict DUPLICATE

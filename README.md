@@ -8,7 +8,7 @@ The project is a bounded, read-only proof of concept for validating selected Beh
 
 ## Current status
 
-Unit 4 initial prototype. The repository contains the architecture, requirements, traceability matrix, sanitized rule schema, read-only input checks, deterministic parser, validation engine, explainable report output, automated tests, and assignment documentation. It is not production-ready and does not control or modify a live console.
+Unit 5 core-logic milestone. The repository contains the architecture, requirements, traceability matrix, an eight-rule sanitized catalog, read-only input checks, deterministic parsing and severity prioritization, explainable report output, automated tests with coverage enforcement, and assignment documentation. It is not production-ready and does not control or modify a live console.
 
 ## Safety and scope boundaries
 
@@ -46,6 +46,8 @@ Changes are committed with action-oriented messages. Feature work is reviewed be
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
+PYTHONPATH=src python -m coverage run --branch --source=src/av_validator -m unittest discover -s tests -v
+python -m coverage report --show-missing
 ```
 
 ## Unit 4 demonstration
@@ -59,10 +61,13 @@ PYTHONPATH=src python -m av_validator \
   --rules rules/demo_rules.json
 ```
 
-The report identifies two controlled routing deviations and shows the rule,
+The report identifies four controlled routing deviations and shows the rule,
 protected path, expected value, observed value, severity, and rationale. Replace
 `candidate-drift.scn` with `candidate-compliant.scn` to demonstrate a compliant
-result. The command reads candidate and baseline files without modifying them.
+result. Critical findings are presented first, but their rule-defined severity is
+not changed. The report records that no automated action occurs and that an
+authorized person must review findings. The command reads candidate and baseline
+files without modifying them.
 
 On Windows PowerShell, use the following one-line commands after installing the
 project with `python -m pip install -e .`:
