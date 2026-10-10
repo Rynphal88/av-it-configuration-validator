@@ -8,7 +8,7 @@ The project is a bounded, read-only proof of concept for validating selected Beh
 
 ## Current status
 
-Unit 5 core-logic milestone. The repository contains the architecture, requirements, traceability matrix, an eight-rule sanitized catalog, read-only input checks, deterministic parsing and severity prioritization, explainable report output, automated tests with coverage enforcement, and assignment documentation. It is not production-ready and does not control or modify a live console.
+Unit 6 integration-and-evaluation milestone. The repository contains the architecture, requirements, traceability matrix, an eight-rule sanitized catalog, read-only input checks, deterministic parsing and severity prioritization, explainable text and JSON reports, environment-backed configuration, a controlled evaluation harness, container packaging, automated tests, and coverage enforcement. It is not production-ready and does not control or modify a live console.
 
 ## Safety and scope boundaries
 
@@ -31,6 +31,7 @@ design/architecture/    Architecture diagram and design notes
 rules/                  Sanitized validation-rule schema
 sample-configs/         Sanitized or synthetic test data only
 reports/                Generated validation and evaluation reports
+tools/                  Reproducible evaluation and diagram utilities
 .github/workflows/      Continuous-integration configuration
 ```
 
@@ -48,6 +49,7 @@ Changes are committed with action-oriented messages. Feature work is reviewed be
 PYTHONPATH=src python -m unittest discover -s tests -v
 PYTHONPATH=src python -m coverage run --branch --source=src/av_validator -m unittest discover -s tests -v
 python -m coverage report --show-missing
+PYTHONPATH=src python tools/run_evaluation.py --baseline sample-configs/sanitized/approved-baseline.scn --rules rules/demo_rules.json --output reports/unit6-evaluation.json
 ```
 
 ## Unit 4 demonstration
@@ -68,6 +70,25 @@ result. Critical findings are presented first, but their rule-defined severity i
 not changed. The report records that no automated action occurs and that an
 authorized person must review findings. The command reads candidate and baseline
 files without modifying them.
+
+## Unit 6 deployment configuration
+
+Copy `.env.example` when local defaults need to be overridden. The supported
+settings are `AV_VALIDATOR_MAX_SCENE_BYTES` and `AV_VALIDATOR_OUTPUT_FORMAT`.
+The selected deployment approach is a versioned Docker image executed locally
+or on an internal, access-controlled host; the container has no live-console
+interface and runs as a non-root user.
+
+```bash
+docker build -t av-it-configuration-validator:0.3.0 .
+docker run --rm --read-only \
+  -v "$PWD/sample-configs:/data/sample-configs:ro" \
+  -v "$PWD/rules:/data/rules:ro" \
+  av-it-configuration-validator:0.3.0 \
+  --candidate /data/sample-configs/sanitized/candidate-drift.scn \
+  --baseline /data/sample-configs/sanitized/approved-baseline.scn \
+  --rules /data/rules/demo_rules.json
+```
 
 On Windows PowerShell, use the following one-line commands after installing the
 project with `python -m pip install -e .`:

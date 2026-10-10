@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest.mock import patch
 
 from av_validator.cli import main
 
@@ -18,7 +19,14 @@ class CliTests(unittest.TestCase):
         output = io.StringIO()
         with redirect_stdout(output):
             exit_code = main(
-                ["--candidate", str(candidate), "--baseline", str(self.baseline), "--rules", str(self.rules)]
+                [
+                    "--candidate",
+                    str(candidate),
+                    "--baseline",
+                    str(self.baseline),
+                    "--rules",
+                    str(self.rules),
+                ]
             )
         report = output.getvalue()
         self.assertEqual(exit_code, 0)
@@ -33,7 +41,14 @@ class CliTests(unittest.TestCase):
         output = io.StringIO()
         with redirect_stdout(output):
             exit_code = main(
-                ["--candidate", str(candidate), "--baseline", str(self.baseline), "--rules", str(self.rules)]
+                [
+                    "--candidate",
+                    str(candidate),
+                    "--baseline",
+                    str(self.baseline),
+                    "--rules",
+                    str(self.rules),
+                ]
             )
         self.assertEqual(exit_code, 0)
         self.assertIn("Status: COMPLIANT", output.getvalue())
@@ -46,10 +61,58 @@ class CliTests(unittest.TestCase):
             errors = io.StringIO()
             with redirect_stderr(errors):
                 exit_code = main(
-                    ["--candidate", str(candidate), "--baseline", str(self.baseline), "--rules", str(self.rules)]
+                    [
+                        "--candidate",
+                        str(candidate),
+                        "--baseline",
+                        str(self.baseline),
+                        "--rules",
+                        str(self.rules),
+                    ]
                 )
         self.assertEqual(exit_code, 1)
         self.assertIn("Validation error", errors.getvalue())
+
+    def test_environment_selects_json_output(self):
+        candidate = self.root / "sample-configs/sanitized/candidate-compliant.scn"
+        output = io.StringIO()
+        with (
+            patch.dict(
+                "os.environ", {"AV_VALIDATOR_OUTPUT_FORMAT": "json"}, clear=True
+            ),
+            redirect_stdout(output),
+        ):
+            exit_code = main(
+                [
+                    "--candidate",
+                    str(candidate),
+                    "--baseline",
+                    str(self.baseline),
+                    "--rules",
+                    str(self.rules),
+                ]
+            )
+        self.assertEqual(exit_code, 0)
+        self.assertIn('"status": "compliant"', output.getvalue())
+
+    def test_nonpositive_command_line_size_limit_is_rejected(self):
+        candidate = self.root / "sample-configs/sanitized/candidate-compliant.scn"
+        errors = io.StringIO()
+        with redirect_stderr(errors):
+            exit_code = main(
+                [
+                    "--candidate",
+                    str(candidate),
+                    "--baseline",
+                    str(self.baseline),
+                    "--rules",
+                    str(self.rules),
+                    "--max-bytes",
+                    "0",
+                ]
+            )
+        self.assertEqual(exit_code, 1)
+        self.assertIn("positive integer", errors.getvalue())
 
 
 if __name__ == "__main__":

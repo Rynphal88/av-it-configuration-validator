@@ -1,0 +1,38 @@
+AV/IT Configuration Validation Report
+====================================
+Status: FINDINGS
+Candidate: candidate-drift.scn (247 bytes)
+Candidate SHA-256: d310ccc263fb9f5d90b80c36586e508c5402fe8d8f4eab9e3e20dcfe760f7ffc
+Baseline: approved-baseline.scn
+Rules evaluated: 8
+Findings: 4
+Automated action: NONE
+Human review: Hold deployment pending authorized human review.
+
+Finding 1: R-001 [CRITICAL]
+Name: Main output path enabled
+Path: /route/main
+Expected: ON
+Observed: OFF
+Rationale: The approved main loudspeaker service requires this protected route.
+
+Finding 2: R-008 [CRITICAL]
+Name: Protected destination remains conflict free
+Path: /route/destination_conflict
+Expected: NONE
+Observed: DUPLICATE
+Rationale: A duplicate protected destination can misroute or interrupt a required service.
+
+Finding 3: R-006 [MAJOR]
+Name: Broadcast path enabled
+Path: /route/broadcast
+Expected: ON
+Observed: OFF
+Rationale: The approved streaming service requires this broadcast route.
+
+Finding 4: R-007 [MAJOR]
+Name: Matrix membership preserved
+Path: /matrix/main_membership
+Expected: ON
+Observed: OFF
+Rationale: The approved loudspeaker path requires this matrix membership.

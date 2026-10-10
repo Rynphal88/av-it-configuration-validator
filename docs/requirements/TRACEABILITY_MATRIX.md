@@ -10,12 +10,12 @@ This matrix connects the Unit 3 requirements to design modules and current or pl
 | FR-07–FR-08 | Severity/explanation | Rule-defined severity and expected-versus-observed assertions | Foundational evidence test implemented |
 | FR-09 | Report/audit | HTML/JSON schema, escaping, hash, version, and timestamp checks | Planned |
 | FR-10 | Human review | Read-only inspection and disposition workflow test | Design control established; workflow test planned |
-| NFR-01 | End-to-end pipeline | Monotonic processing-time measurement | Planned for at least 40 controlled variants |
-| NFR-02 | Evaluation harness | Precision and recall confusion matrix | Planned; target is at least 90% for each measure |
+| NFR-01 | End-to-end pipeline | Mean, median, and 95th-percentile monotonic latency across 40 controlled variants | Implemented in Unit 6; exact results are recorded in `reports/unit6-evaluation.json` |
+| NFR-02 | Evaluation harness | Precision, recall, decision accuracy, and confusion-matrix counts | Implemented in Unit 6 against the stated synthetic single-drift corpus |
 | NFR-03 | All processing modules | Repeated-run equality and fail-closed negative tests | Partially implemented |
-| NFR-04 | Report/human review | Explanation-completeness and reviewer-usability checklist | Planned |
+| NFR-04 | Report/human review | Five-criterion structured heuristic inspection of the CLI and report | Implemented in Unit 6; non-participant limitation is explicitly reported |
 | NFR-05–NFR-06 | Input, report, repository | Threat tests and repository/data inspection | Design controls implemented; expanded tests planned |
-| NFR-07–NFR-09 | Architecture and build | Module tests, catalog-extension test, documented Python environment | Architecture and CI scaffold implemented |
+| NFR-07–NFR-09 | Architecture and build | Module tests, configuration tests, container build, documented Python environment | Integrated service, environment settings, Dockerfile, and CI evaluation implemented in Unit 6 |
 
 ## Human decision boundary
 
