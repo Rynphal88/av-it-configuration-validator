@@ -1,0 +1,11 @@
+AV/IT Configuration Validation Report
+====================================
+Status: COMPLIANT
+Candidate: candidate-compliant.scn (234 bytes)
+Candidate SHA-256: a3f9972a8b5ead5e71e9de4c4a27303204a9d5d3b4bd399fb1adaae8d0a70fe7
+Baseline: approved-baseline.scn
+Rules evaluated: 8
+Findings: 0
+Automated action: NONE
+Human review: No protected-path drift detected; retain normal pre-deployment review.
+No protected-path drift was detected.

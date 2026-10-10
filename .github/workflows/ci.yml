@@ -21,3 +21,11 @@ jobs:
           python -m pip install "coverage>=7.6,<8"
           python -m coverage run --branch --source=src/av_validator -m unittest discover -s tests -v
           python -m coverage report --show-missing --fail-under=85
+      - name: Run controlled integration evaluation
+        env:
+          PYTHONPATH: src
+        run: |
+          python tools/run_evaluation.py \
+            --baseline sample-configs/sanitized/approved-baseline.scn \
+            --rules rules/demo_rules.json \
+            --output /tmp/unit6-evaluation.json
