@@ -1,0 +1,16 @@
+usage: __main__.py [-h] --candidate CANDIDATE --baseline BASELINE --rules
+                   RULES [--format {text,json}] [--max-bytes MAX_BYTES]
+
+Read-only validation of a sanitized X32 scene against an approved baseline.
+
+options:
+  -h, --help            show this help message and exit
+  --candidate CANDIDATE
+                        candidate .scn file
+  --baseline BASELINE   approved baseline .scn file
+  --rules RULES         declarative JSON rule catalog
+  --format {text,json}  report format (default: environment setting or text)
+  --max-bytes MAX_BYTES
+                        maximum bytes accepted for each scene file
+
+Validation error: scene input must use the .scn extension

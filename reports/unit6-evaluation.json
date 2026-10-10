@@ -1,0 +1,468 @@
+{
+  "method": {
+    "corpus": "synthetic single-drift variants",
+    "unique_variants": 40,
+    "rules_exercised": 8,
+    "variants_per_rule": 5,
+    "ground_truth": "one known protected-path drift per variant",
+    "limitations": "Results do not establish performance on every X32 firmware or live venue."
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "correctness": {
+    "true_positive": 40,
+    "false_positive": 0,
+    "false_negative": 0,
+    "true_negative": 280,
+    "precision_percent": 100.0,
+    "recall_percent": 100.0,
+    "decision_accuracy_percent": 100.0,
+    "cases_correct": 40
+  },
+  "performance": {
+    "mean_latency_ms": 1.3036,
+    "median_latency_ms": 1.2737,
+    "p95_latency_ms": 1.5788,
+    "throughput_validations_per_second": 681.39,
+    "peak_traced_memory_kib": 42.44
+  },
+  "qualitative_usability": {
+    "method": "structured non-participant heuristic inspection",
+    "rating_scale": "Pass or Needs improvement",
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "completion_percent": 100.0,
+    "criteria": [
+      {
+        "criterion": "Task discoverability",
+        "rating": "Pass",
+        "evidence": "Command help names the candidate, baseline, rule, format, and size inputs."
+      },
+      {
+        "criterion": "Error feedback",
+        "rating": "Pass",
+        "evidence": "Invalid input returns a concise validation error and nonzero exit code."
+      },
+      {
+        "criterion": "Finding clarity",
+        "rating": "Pass",
+        "evidence": "Each finding shows rule, severity, path, expected value, observed value, and rationale."
+      },
+      {
+        "criterion": "Safety visibility",
+        "rating": "Pass",
+        "evidence": "The report states that automated action is none and identifies the human-review boundary."
+      },
+      {
+        "criterion": "Output flexibility",
+        "rating": "Pass",
+        "evidence": "The same workflow supports readable text and machine-readable JSON output."
+      }
+    ],
+    "interpretation": "The interface met all five inspected clarity criteria; participant usability testing remains future work."
+  },
+  "cases": [
+    {
+      "case": "R-001-1",
+      "expected": [
+        "R-001"
+      ],
+      "observed": [
+        "R-001"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-001-2",
+      "expected": [
+        "R-001"
+      ],
+      "observed": [
+        "R-001"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-001-3",
+      "expected": [
+        "R-001"
+      ],
+      "observed": [
+        "R-001"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-001-4",
+      "expected": [
+        "R-001"
+      ],
+      "observed": [
+        "R-001"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-001-5",
+      "expected": [
+        "R-001"
+      ],
+      "observed": [
+        "R-001"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-002-1",
+      "expected": [
+        "R-002"
+      ],
+      "observed": [
+        "R-002"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-002-2",
+      "expected": [
+        "R-002"
+      ],
+      "observed": [
+        "R-002"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-002-3",
+      "expected": [
+        "R-002"
+      ],
+      "observed": [
+        "R-002"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-002-4",
+      "expected": [
+        "R-002"
+      ],
+      "observed": [
+        "R-002"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-002-5",
+      "expected": [
+        "R-002"
+      ],
+      "observed": [
+        "R-002"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-003-1",
+      "expected": [
+        "R-003"
+      ],
+      "observed": [
+        "R-003"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-003-2",
+      "expected": [
+        "R-003"
+      ],
+      "observed": [
+        "R-003"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-003-3",
+      "expected": [
+        "R-003"
+      ],
+      "observed": [
+        "R-003"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-003-4",
+      "expected": [
+        "R-003"
+      ],
+      "observed": [
+        "R-003"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-003-5",
+      "expected": [
+        "R-003"
+      ],
+      "observed": [
+        "R-003"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-004-1",
+      "expected": [
+        "R-004"
+      ],
+      "observed": [
+        "R-004"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-004-2",
+      "expected": [
+        "R-004"
+      ],
+      "observed": [
+        "R-004"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-004-3",
+      "expected": [
+        "R-004"
+      ],
+      "observed": [
+        "R-004"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-004-4",
+      "expected": [
+        "R-004"
+      ],
+      "observed": [
+        "R-004"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-004-5",
+      "expected": [
+        "R-004"
+      ],
+      "observed": [
+        "R-004"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-006-1",
+      "expected": [
+        "R-006"
+      ],
+      "observed": [
+        "R-006"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-006-2",
+      "expected": [
+        "R-006"
+      ],
+      "observed": [
+        "R-006"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-006-3",
+      "expected": [
+        "R-006"
+      ],
+      "observed": [
+        "R-006"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-006-4",
+      "expected": [
+        "R-006"
+      ],
+      "observed": [
+        "R-006"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-006-5",
+      "expected": [
+        "R-006"
+      ],
+      "observed": [
+        "R-006"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-005-1",
+      "expected": [
+        "R-005"
+      ],
+      "observed": [
+        "R-005"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-005-2",
+      "expected": [
+        "R-005"
+      ],
+      "observed": [
+        "R-005"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-005-3",
+      "expected": [
+        "R-005"
+      ],
+      "observed": [
+        "R-005"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-005-4",
+      "expected": [
+        "R-005"
+      ],
+      "observed": [
+        "R-005"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-005-5",
+      "expected": [
+        "R-005"
+      ],
+      "observed": [
+        "R-005"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-007-1",
+      "expected": [
+        "R-007"
+      ],
+      "observed": [
+        "R-007"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-007-2",
+      "expected": [
+        "R-007"
+      ],
+      "observed": [
+        "R-007"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-007-3",
+      "expected": [
+        "R-007"
+      ],
+      "observed": [
+        "R-007"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-007-4",
+      "expected": [
+        "R-007"
+      ],
+      "observed": [
+        "R-007"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-007-5",
+      "expected": [
+        "R-007"
+      ],
+      "observed": [
+        "R-007"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-008-1",
+      "expected": [
+        "R-008"
+      ],
+      "observed": [
+        "R-008"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-008-2",
+      "expected": [
+        "R-008"
+      ],
+      "observed": [
+        "R-008"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-008-3",
+      "expected": [
+        "R-008"
+      ],
+      "observed": [
+        "R-008"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-008-4",
+      "expected": [
+        "R-008"
+      ],
+      "observed": [
+        "R-008"
+      ],
+      "correct": true
+    },
+    {
+      "case": "R-008-5",
+      "expected": [
+        "R-008"
+      ],
+      "observed": [
+        "R-008"
+      ],
+      "correct": true
+    }
+  ]
+}

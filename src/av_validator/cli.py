@@ -1,45 +1,60 @@
-"""Command-line entry point for the Unit 4 initial prototype."""
+"""Command-line interface for the integrated validator."""
 
 from __future__ import annotations
 
 import argparse
 import sys
 
-from .catalog import RuleCatalogError, load_rules
-from .engine import evaluate_rules
-from .integrity import InputIntegrityError, read_scene_file
-from .parser import SceneParseError, parse_scene_text
-from .reporting import build_report, format_json_report, format_text_report
+from .catalog import RuleCatalogError
+from .config import ConfigurationError, Settings
+from .integrity import InputIntegrityError
+from .parser import SceneParseError
+from .reporting import format_json_report, format_text_report
+from .service import validate_configuration
 
 
-def build_parser() -> argparse.ArgumentParser:
+def build_parser(settings: Settings | None = None) -> argparse.ArgumentParser:
+    settings = settings or Settings()
     parser = argparse.ArgumentParser(
         description="Read-only validation of a sanitized X32 scene against an approved baseline."
     )
     parser.add_argument("--candidate", required=True, help="candidate .scn file")
     parser.add_argument("--baseline", required=True, help="approved baseline .scn file")
     parser.add_argument("--rules", required=True, help="declarative JSON rule catalog")
-    parser.add_argument("--format", choices=("text", "json"), default="text")
+    parser.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default=settings.output_format,
+        help="report format (default: environment setting or text)",
+    )
+    parser.add_argument(
+        "--max-bytes",
+        type=int,
+        default=settings.max_scene_bytes,
+        help="maximum bytes accepted for each scene file",
+    )
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
     try:
-        candidate = read_scene_file(args.candidate)
-        baseline = read_scene_file(args.baseline)
-        candidate_model = parse_scene_text(candidate.text)
-        baseline_model = parse_scene_text(baseline.text)
-        rules, rules_sha256 = load_rules(args.rules, baseline_model)
-        findings = evaluate_rules(candidate_model, rules)
-        report = build_report(
-            candidate,
-            baseline,
-            findings,
-            rule_count=len(rules),
-            rules_sha256=rules_sha256,
+        settings = Settings.from_env()
+        args = build_parser(settings).parse_args(argv)
+        if args.max_bytes <= 0:
+            raise ConfigurationError("--max-bytes must be a positive integer")
+        report = validate_configuration(
+            args.candidate,
+            args.baseline,
+            args.rules,
+            max_scene_bytes=args.max_bytes,
         )
-    except (InputIntegrityError, SceneParseError, RuleCatalogError, OSError) as exc:
+    except (
+        ConfigurationError,
+        InputIntegrityError,
+        SceneParseError,
+        RuleCatalogError,
+        OSError,
+    ) as exc:
         print(f"Validation error: {exc}", file=sys.stderr)
         return 1
 
